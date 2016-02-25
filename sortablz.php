@@ -4,7 +4,7 @@ Plugin Name: Sortablz
 Plugin URI: http://zendgame.ocm
 Description: A Zendgame WordPress Plugin that sorts HTML elements with AJAX.
 	Works on, e.g., divs, rather than table columns.
-Version: 1.0
+Version: 1.a1
 Author: Bonnie Souter
 Author URI: http://zendgame.com
 License: GPLv2
@@ -32,12 +32,7 @@ License: GPLv2
  */
 final class Sortablz_Plugin {
 
-	public $dir_path = '';
 	public $dir_uri = '';
-	public $admin_dir = '';
-	public $lib_dir = '';
-	public $templates_dir = '';
-	public $css_uri = '';
 	public $js_uri = '';
 
 	/**
@@ -50,8 +45,6 @@ final class Sortablz_Plugin {
 		if ( is_null( $instance ) ) {
 			$instance = new Sortablz_Plugin;
 			$instance->setup();
-			$instance->includes();
-			$instance->setup_actions();
 		}
 
 		return $instance;
@@ -111,70 +104,16 @@ final class Sortablz_Plugin {
 	private function setup() {
 
 		// Main plugin directory path and URI.
-		$this->dir_path = trailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->dir_uri  = trailingslashit( plugin_dir_url(  __FILE__ ) );
 
-		// Plugin directory paths.
-		$this->lib_dir       = trailingslashit( $this->dir_path . 'lib'       );
-		$this->admin_dir     = trailingslashit( $this->dir_path . 'admin'     );
-		$this->templates_dir = trailingslashit( $this->dir_path . 'templates' );
-
 		// Plugin directory URIs.
-		$this->css_uri = trailingslashit( $this->dir_uri . 'css' );
 		$this->js_uri  = trailingslashit( $this->dir_uri . 'js'  );
 	}
 
-	/**
-	 * Loads files needed by the plugin.
-	 */
-	private function includes() {
-
-		// Load class files.
-		//require_once( $this->lib_dir . 'class-role.php'         );
-
-		// Load include files.
-		//require_once( $this->lib_dir . 'functions.php'                     );
-		//require_once( $this->lib_dir . 'functions-admin-bar.php'           );
-		//require_once( $this->lib_dir . 'functions-options.php'             );
-		//require_once( $this->lib_dir . 'functions-shortcodes.php'          );
-		//require_once( $this->lib_dir . 'functions-widgets.php'             );
-
-		// Load template files.
-		//require_once( $this->lib_dir . 'template.php' );
-
-		// Load admin files.
-		if ( is_admin() ) {
-
-			// General admin functions.
-			//require_once( $this->admin_dir . 'functions-admin.php' );
-		
-			// Plugin settings.
-			//require_once( $this->admin_dir . 'class-settings.php' );
-
-		}
-	}
-
-	/**
-	 * Sets up main plugin actions and filters.
-	 */
-	private function setup_actions() {
-
-		// Register activation hook.
-		register_activation_hook( __FILE__, array( $this, 'activation' ) );
-	}
-
-	/**
-	 * Method that runs only when the plugin is activated.
-	 */
-	public function activation() {
-
-	}
-	
 }
 
 /**
- * Gets the instance of the `Sortablz_Plugin` class.  This function is useful for quickly grabbing data
- * used throughout the plugin.
+ * Gets the instance of the `Sortablz_Plugin` class.  
  */
 function sortablz_plugin() {
 	return Sortablz_Plugin::get_instance();
