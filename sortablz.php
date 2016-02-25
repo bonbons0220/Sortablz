@@ -3,7 +3,7 @@
 Plugin Name: Sortablz 
 Plugin URI: http://zendgame.ocm
 Description: A Zendgame WordPress Plugin that sorts HTML elements with AJAX.
-	Works with divs, rather than table columns.
+	Works on, e.g., divs, rather than table columns.
 Version: 1.0
 Author: Bonnie Souter
 Author URI: http://zendgame.com
